@@ -1,0 +1,1064 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>FraudGuard | Bank Fraud Detection</title>
+
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+
+        body {
+
+            min-height: 100vh;
+
+            background:
+                radial-gradient(
+                    circle at 10% 10%,
+                    rgba(37, 99, 235, 0.25),
+                    transparent 30%
+                ),
+                radial-gradient(
+                    circle at 90% 90%,
+                    rgba(14, 116, 144, 0.20),
+                    transparent 30%
+                ),
+                #07111f;
+
+            color: white;
+
+            padding: 30px 20px;
+        }
+
+
+        .container {
+
+            max-width: 1100px;
+
+            margin: auto;
+        }
+
+
+        /* ================= NAVBAR ================= */
+
+        .navbar {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            margin-bottom: 45px;
+        }
+
+
+        .logo {
+
+            font-size: 25px;
+
+            font-weight: 700;
+        }
+
+
+        .logo span {
+
+            color: #38bdf8;
+        }
+
+
+        .status {
+
+            background: rgba(34, 197, 94, 0.10);
+
+            border: 1px solid rgba(34, 197, 94, 0.35);
+
+            color: #4ade80;
+
+            padding: 8px 14px;
+
+            border-radius: 20px;
+
+            font-size: 13px;
+        }
+
+
+        /* ================= HERO ================= */
+
+        .hero {
+
+            text-align: center;
+
+            margin-bottom: 35px;
+        }
+
+
+        .badge {
+
+            display: inline-block;
+
+            background: rgba(56, 189, 248, 0.10);
+
+            border: 1px solid rgba(56, 189, 248, 0.30);
+
+            color: #7dd3fc;
+
+            padding: 7px 14px;
+
+            border-radius: 20px;
+
+            font-size: 12px;
+
+            margin-bottom: 18px;
+
+            letter-spacing: 0.5px;
+        }
+
+
+        .hero h1 {
+
+            font-size: 44px;
+
+            line-height: 1.2;
+
+            margin-bottom: 14px;
+        }
+
+
+        .hero h1 span {
+
+            color: #38bdf8;
+        }
+
+
+        .hero p {
+
+            color: #94a3b8;
+
+            font-size: 16px;
+
+            max-width: 680px;
+
+            margin: auto;
+
+            line-height: 1.7;
+        }
+
+
+        /* ================= MAIN CARD ================= */
+
+        .card {
+
+            background: rgba(15, 23, 42, 0.90);
+
+            border: 1px solid rgba(148, 163, 184, 0.14);
+
+            border-radius: 22px;
+
+            padding: 35px;
+
+            box-shadow:
+                0 25px 70px rgba(0, 0, 0, 0.35);
+
+            backdrop-filter: blur(12px);
+        }
+
+
+        .card-header {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            margin-bottom: 30px;
+        }
+
+
+        .card-header h2 {
+
+            font-size: 22px;
+
+            margin-bottom: 6px;
+        }
+
+
+        .card-header p {
+
+            color: #64748b;
+
+            font-size: 13px;
+        }
+
+
+        .shield {
+
+            width: 52px;
+
+            height: 52px;
+
+            border-radius: 15px;
+
+            background: rgba(56, 189, 248, 0.10);
+
+            border: 1px solid rgba(56, 189, 248, 0.15);
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            font-size: 25px;
+        }
+
+
+        /* ================= FORM ================= */
+
+        .form-grid {
+
+            display: grid;
+
+            grid-template-columns: repeat(2, 1fr);
+
+            gap: 22px;
+        }
+
+
+        .form-group {
+
+            display: flex;
+
+            flex-direction: column;
+        }
+
+
+        .form-group label {
+
+            color: #cbd5e1;
+
+            font-size: 13px;
+
+            margin-bottom: 9px;
+
+            font-weight: 600;
+        }
+
+
+        input,
+        select {
+
+            width: 100%;
+
+            padding: 14px 15px;
+
+            border-radius: 11px;
+
+            border: 1px solid #263449;
+
+            background: #0b1628;
+
+            color: white;
+
+            outline: none;
+
+            font-size: 14px;
+
+            transition: 0.25s;
+        }
+
+
+        input::placeholder {
+
+            color: #475569;
+        }
+
+
+        input:focus,
+        select:focus {
+
+            border-color: #38bdf8;
+
+            box-shadow:
+                0 0 0 3px rgba(56, 189, 248, 0.08);
+        }
+
+
+        select option {
+
+            background: #0b1628;
+
+            color: white;
+        }
+
+
+        /* ================= BUTTON ================= */
+
+        .button-area {
+
+            margin-top: 30px;
+        }
+
+
+        button {
+
+            width: 100%;
+
+            padding: 16px;
+
+            border: none;
+
+            border-radius: 11px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #0284c7,
+                    #2563eb
+                );
+
+            color: white;
+
+            font-size: 15px;
+
+            font-weight: 700;
+
+            cursor: pointer;
+
+            transition: 0.25s;
+
+            box-shadow:
+                0 8px 25px rgba(37, 99, 235, 0.25);
+        }
+
+
+        button:hover {
+
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 12px 30px rgba(37, 99, 235, 0.40);
+        }
+
+
+        button:active {
+
+            transform: translateY(0);
+        }
+
+
+        /* ================= RESULT ================= */
+
+        .result {
+
+            margin-top: 30px;
+
+            padding: 25px;
+
+            border-radius: 16px;
+
+            background:
+                rgba(14, 165, 233, 0.10);
+
+            border:
+                1px solid rgba(56, 189, 248, 0.35);
+
+            text-align: center;
+        }
+
+
+        .result-icon {
+
+            font-size: 35px;
+
+            margin-bottom: 10px;
+        }
+
+
+        .result-label {
+
+            color: #38bdf8;
+
+            font-size: 11px;
+
+            font-weight: bold;
+
+            letter-spacing: 2px;
+
+            margin-bottom: 8px;
+        }
+
+
+        .result h2 {
+
+            color: white;
+
+            font-size: 22px;
+
+            margin-bottom: 8px;
+        }
+
+
+        .result-note {
+
+            color: #64748b;
+
+            font-size: 12px;
+        }
+
+
+        /* ================= INFO CARDS ================= */
+
+        .info-grid {
+
+            display: grid;
+
+            grid-template-columns: repeat(3, 1fr);
+
+            gap: 18px;
+
+            margin-top: 22px;
+        }
+
+
+        .info-box {
+
+            padding: 21px;
+
+            border-radius: 15px;
+
+            background:
+                rgba(15, 23, 42, 0.70);
+
+            border:
+                1px solid rgba(148, 163, 184, 0.12);
+
+            transition: 0.25s;
+        }
+
+
+        .info-box:hover {
+
+            transform: translateY(-3px);
+
+            border-color:
+                rgba(56, 189, 248, 0.25);
+        }
+
+
+        .info-box h3 {
+
+            font-size: 14px;
+
+            margin-bottom: 8px;
+        }
+
+
+        .info-box p {
+
+            color: #64748b;
+
+            font-size: 12px;
+
+            line-height: 1.6;
+        }
+
+
+        /* ================= FOOTER ================= */
+
+        footer {
+
+            text-align: center;
+
+            color: #475569;
+
+            font-size: 12px;
+
+            margin-top: 30px;
+
+            padding-bottom: 10px;
+        }
+
+
+        /* ================= RESPONSIVE ================= */
+
+        @media (max-width: 750px) {
+
+            body {
+
+                padding: 20px 15px;
+            }
+
+
+            .navbar {
+
+                margin-bottom: 30px;
+            }
+
+
+            .hero h1 {
+
+                font-size: 32px;
+            }
+
+
+            .hero p {
+
+                font-size: 14px;
+            }
+
+
+            .form-grid {
+
+                grid-template-columns: 1fr;
+            }
+
+
+            .info-grid {
+
+                grid-template-columns: 1fr;
+            }
+
+
+            .card {
+
+                padding: 25px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<div class="container">
+
+
+    <!-- ================= NAVBAR ================= -->
+
+    <div class="navbar">
+
+        <div class="logo">
+
+            🛡️ Fraud<span>Guard</span>
+
+        </div>
+
+
+        <div class="status">
+
+            ● ML System Online
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ================= HERO ================= -->
+
+    <div class="hero">
+
+
+        <div class="badge">
+
+            MACHINE LEARNING • FRAUD DETECTION
+
+        </div>
+
+
+        <h1>
+
+            Bank Transaction <span>Security</span>
+
+        </h1>
+
+
+        <p>
+
+            Analyze financial transactions using a machine learning
+            model to identify potentially fraudulent activity.
+
+        </p>
+
+    </div>
+
+
+
+    <!-- ================= MAIN CARD ================= -->
+
+    <div class="card">
+
+
+        <div class="card-header">
+
+
+            <div>
+
+                <h2>
+
+                    Transaction Analysis
+
+                </h2>
+
+
+                <p>
+
+                    Enter the transaction details below
+
+                </p>
+
+            </div>
+
+
+            <div class="shield">
+
+                🛡️
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- ================= FORM ================= -->
+
+        <form action="/predict" method="POST">
+
+
+            <div class="form-grid">
+
+
+                <!-- TRANSACTION STEP -->
+
+                <div class="form-group">
+
+                    <label>
+
+                        Transaction Step
+
+                    </label>
+
+
+                    <input
+
+                        type="number"
+
+                        name="step"
+
+                        placeholder="Example: 1"
+
+                        required
+
+                    >
+
+                </div>
+
+
+
+                <!-- TRANSACTION TYPE -->
+
+                <div class="form-group">
+
+                    <label>
+
+                        Transaction Type
+
+                    </label>
+
+
+                    <select
+
+                        name="type"
+
+                        required
+
+                    >
+
+                        <option value="CASH_OUT">
+
+                            CASH_OUT
+
+                        </option>
+
+
+                        <option value="DEBIT">
+
+                            DEBIT
+
+                        </option>
+
+
+                        <option value="PAYMENT">
+
+                            PAYMENT
+
+                        </option>
+
+
+                        <option value="TRANSFER">
+
+                            TRANSFER
+
+                        </option>
+
+
+                        <option value="CASH_IN">
+
+                            CASH_IN
+
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+
+                <!-- AMOUNT -->
+
+                <div class="form-group">
+
+                    <label>
+
+                        Transaction Amount
+
+                    </label>
+
+
+                    <input
+
+                        type="number"
+
+                        name="amount"
+
+                        step="0.01"
+
+                        placeholder="Enter amount"
+
+                        required
+
+                    >
+
+                </div>
+
+
+
+                <!-- OLD ORIGIN -->
+
+                <div class="form-group">
+
+                    <label>
+
+                        Old Balance — Origin
+
+                    </label>
+
+
+                    <input
+
+                        type="number"
+
+                        name="oldbalanceOrg"
+
+                        step="0.01"
+
+                        placeholder="Enter balance"
+
+                        required
+
+                    >
+
+                </div>
+
+
+
+                <!-- NEW ORIGIN -->
+
+                <div class="form-group">
+
+                    <label>
+
+                        New Balance — Origin
+
+                    </label>
+
+
+                    <input
+
+                        type="number"
+
+                        name="newbalanceOrig"
+
+                        step="0.01"
+
+                        placeholder="Enter balance"
+
+                        required
+
+                    >
+
+                </div>
+
+
+
+                <!-- OLD DESTINATION -->
+
+                <div class="form-group">
+
+                    <label>
+
+                        Old Balance — Destination
+
+                    </label>
+
+
+                    <input
+
+                        type="number"
+
+                        name="oldbalanceDest"
+
+                        step="0.01"
+
+                        placeholder="Enter balance"
+
+                        required
+
+                    >
+
+                </div>
+
+
+
+                <!-- NEW DESTINATION -->
+
+                <div class="form-group">
+
+                    <label>
+
+                        New Balance — Destination
+
+                    </label>
+
+
+                    <input
+
+                        type="number"
+
+                        name="newbalanceDest"
+
+                        step="0.01"
+
+                        placeholder="Enter balance"
+
+                        required
+
+                    >
+
+                </div>
+
+
+
+                <!-- FLAGGED FRAUD -->
+
+                <div class="form-group">
+
+                    <label>
+
+                        Flagged Fraud
+
+                    </label>
+
+
+                    <select name="isFlaggedFraud">
+
+                        <option value="0">
+
+                            No
+
+                        </option>
+
+
+                        <option value="1">
+
+                            Yes
+
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- ================= BUTTON ================= -->
+
+            <div class="button-area">
+
+                <button type="submit">
+
+                    🔍 Analyze Transaction
+
+                </button>
+
+            </div>
+
+
+        </form>
+
+
+
+        <!-- ================= RESULT ================= -->
+
+        {% if prediction %}
+
+        <div class="result">
+
+
+            <div class="result-icon">
+
+                🛡️
+
+            </div>
+
+
+            <p class="result-label">
+
+                ANALYSIS RESULT
+
+            </p>
+
+
+            <h2>
+
+                {{ prediction }}
+
+            </h2>
+
+
+            <p class="result-note">
+
+                Result generated by the trained Random Forest model.
+
+            </p>
+
+
+        </div>
+
+        {% endif %}
+
+
+
+    </div>
+
+
+
+    <!-- ================= INFORMATION ================= -->
+
+    <div class="info-grid">
+
+
+        <div class="info-box">
+
+            <h3>
+
+                🤖 Machine Learning
+
+            </h3>
+
+
+            <p>
+
+                Uses a trained Random Forest classification model
+                for transaction analysis.
+
+            </p>
+
+        </div>
+
+
+
+        <div class="info-box">
+
+            <h3>
+
+                🔐 Security Focus
+
+            </h3>
+
+
+            <p>
+
+                Designed to identify suspicious transaction patterns
+                in financial data.
+
+            </p>
+
+        </div>
+
+
+
+        <div class="info-box">
+
+            <h3>
+
+                ⚡ Fast Analysis
+
+            </h3>
+
+
+            <p>
+
+                Transaction features are processed through the
+                Flask backend.
+
+            </p>
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+        Bank Fraud Detection System
+        •
+        Machine Learning Project
+
+    </footer>
+
+
+</div>
+
+
+</body>
+
+</html>
+
